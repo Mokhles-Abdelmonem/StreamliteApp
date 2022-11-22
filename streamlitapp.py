@@ -24,8 +24,8 @@ def fetch():
     url = "https://data-production-4fc9.up.railway.app/discoverdata/rest-api-file/"
     result = requests.post(url,json=json_data)
     data = result.text
-    st.subheader(data)
     data = json.loads(result.text)
+    st.subheader(data)
     data = StringIO(data)
     df = pd.read_csv(data, sep=",")
     return df
