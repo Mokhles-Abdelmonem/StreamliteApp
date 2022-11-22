@@ -15,8 +15,23 @@ st.set_page_config(page_title='Streamlite visualization')
 
 
 st.header('Simple visualization of Data ')
+query_params = st.experimental_get_query_params()
+st.subheader(query_params.items())
+
+def fetch():
+    query_params = st.experimental_get_query_params()
+    token = query_params["token"][0]
+    json = {"token":token}
+    url = "https://data-production-4fc9.up.railway.app/discoverdata/rest-api-file/"
+    result = requests.post(url,json=json)
+    data = result.json()["data"]
+    data = StringIO(data)
+    df = pd.read_csv(data, sep=",")
+    return df
 
 
+
+    df = fetch()
 
 
 try :
