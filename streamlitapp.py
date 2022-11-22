@@ -31,7 +31,7 @@ def fetch():
 
 
 
-    df = fetch()
+df = fetch()
 
 
 try :
