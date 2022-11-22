@@ -28,7 +28,7 @@ try :
         query_params = st.experimental_get_query_params()
         token = query_params["token"][0]
         json = {"token":token}
-        url = "http://127.0.0.1:8000/discoverdata/rest-api-file/"
+        url = "https://data-production-4fc9.up.railway.app/discoverdata/rest-api-file/"
         result = requests.post(url,json=json)
         data = result.json()["data"]
         data = StringIO(data)
