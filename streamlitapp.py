@@ -4,7 +4,6 @@ import plotly.express as px
 from io import StringIO
 import os
 import requests
-import json
 
 # from views import BaseData, SaveData
 
@@ -20,12 +19,12 @@ st.header('Simple visualization of Data ')
 def fetch():
     query_params = st.experimental_get_query_params()
     token = query_params["token"][0]
-    json_data = {"token":token}
+    json = {"token":token}
     url = "https://data-production-4fc9.up.railway.app/discoverdata/rest-api-file/"
-    result = requests.post(url,json=json_data)
-    data = result.text
-    data = json.loads(result.text)
-    st.subheader(data)
+    result = requests.post(url,json=json)
+    st.subheader(result)
+
+    data = result.json()["data"]
     data = StringIO(data)
     df = pd.read_csv(data, sep=",")
     return df
