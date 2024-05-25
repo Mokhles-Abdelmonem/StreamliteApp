@@ -25,10 +25,10 @@ try :
     # ---- READ DATA FRAME ----
 
     def fetch():
-        query_params = st.query_params()
-        token = query_params["token"][0]
+        query_params = st.query_params
+        token = query_params["token"]
         json = {"token":token}
-        url = "https://data-production-4fc9.up.railway.app/discoverdata/rest-api-file/"
+        url = "http://127.0.0.1:8000/discoverdata/rest-api-file/"
         result = requests.post(url,json=json)
         data = result.json()["data"]
         data = StringIO(data)
