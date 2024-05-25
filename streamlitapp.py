@@ -25,7 +25,7 @@ try :
     # ---- READ DATA FRAME ----
 
     def fetch():
-        query_params = st.experimental_get_query_params()
+        query_params = st.query_params()
         token = query_params["token"][0]
         json = {"token":token}
         url = "https://data-production-4fc9.up.railway.app/discoverdata/rest-api-file/"
@@ -298,7 +298,8 @@ try :
             exec(cmd)
             st.plotly_chart(chart)
 
-except :
+except Exception as e :
+    print(e)
     st.error('Something goes Wrong make sure that the data is clean and in right format and Try again , if issuse still please tell us in report issue section', icon="🚨")
 
 
